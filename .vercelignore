@@ -1,0 +1,11 @@
+node_modules
+tests
+tools
+.github
+playwright.config.ts
+package.json
+package-lock.json
+test-results
+playwright-report
+AGENTS.md
+CLAUDE.md

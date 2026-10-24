@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oxi: local-first BI for your laptop</title>
+  <meta name="description" content="Oxi is a local-first desktop BI app. Point it at your files, model them once, and build dashboards. Your data never leaves your machine.">
+  <meta name="theme-color" content="#F6F8FC">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Oxi home"><span class="mark" aria-hidden="true"></span><span>oxi</span></a>
+
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#why">Why</a></li>
+          <li><a href="#product">Product</a></li>
+          <li><a href="#demos">Demos</a></li>
+          <li><a href="#teams">Teams</a></li>
+          <li><a href="#benchmarks">Benchmarks</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><!-- TODO: set the GitHub repo URL once Oxi is fully tested -->
+            <a class="nav-gh" href="#" data-github-link aria-disabled="true" title="GitHub — link coming soon">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          <li class="nav-cta"><a class="btn btn-primary btn-sm" href="#">Get early access</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- 1. Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">// local-first BI &middot; v0.1, early</p>
+          <h1 id="hero-title">Your data. Your laptop. <span class="hl">Instant answers.</span></h1>
+          <p class="lead">Oxi is a desktop BI app that runs entirely on your machine. Point it at your files, model them once, and build dashboards that reload in under a millisecond once cached.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">Get early access</a>
+            <a class="btn btn-ghost" href="#demos">See how it works</a>
+          </div>
+          <p class="cta-note"><a class="link" href="#">Read the docs</a> &middot; No pricing yet</p>
+        </div>
+
+        <div class="term reveal" role="img" aria-label="Example session: a metric query for revenue by region over the last 30 days returns three regions in 0.4 ms from cache. Sample data.">
+          <div class="term-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span>oxi &mdash; query</span></div>
+          <div class="term-body">
+            <p class="cmd"><span class="prompt" aria-hidden="true">$</span> <span id="typed">metric revenue by region --last 30d</span><span class="caret" aria-hidden="true"></span></p>
+            <div class="t-table">
+              <div class="t-row t-head"><span>region</span><span>revenue</span><span>orders</span></div>
+              <div class="t-row"><span>EMEA</span><span>1,284,310</span><span>9,412</span></div>
+              <div class="t-row"><span>AMER</span><span>1,102,877</span><span>8,130</span></div>
+              <div class="t-row"><span>APAC</span><span>804,551</span><span>6,044</span></div>
+            </div>
+            <p class="t-foot"><span class="ok">0.4 ms</span> &middot; cache hit <span class="t-muted">&middot; sample data</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap hero-video reveal">
+        <figure class="frame">
+          <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / overview</span></div>
+          <div class="frame-body">
+            <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+            <video data-video="dashboard" muted playsinline loop preload="none" aria-label="Product overview: screen recording, muted, looping"></video>
+            <button type="button" class="vid-btn">Pause</button>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. Stat row -->
+    <section class="stats" aria-label="At a glance">
+      <ul class="wrap stat-grid">
+        <li class="stat reveal"><strong>&lt;1 ms</strong><span>cached reload, backend only</span></li>
+        <li class="stat reveal"><strong>5.6 s</strong><span>100M rows, uncached reload</span></li>
+        <li class="stat reveal"><strong>Zero</strong><span>telemetry, no network calls</span></li>
+        <li class="stat reveal"><strong>dbt</strong><span>compatible models</span></li>
+      </ul>
+    </section>
+
+    <!-- 3. Marquee -->
+    <section class="marquee" aria-label="Supported formats and sources">
+      <div class="marquee-viewport">
+        <div class="marquee-inner">
+          <ul class="marquee-list">
+            <li>Parquet</li><li>CSV</li><li>JSON</li><li>Excel</li><li>DuckDB</li>
+            <li>Postgres<span class="soon">soon</span></li><li>MySQL<span class="soon">soon</span></li><li>SQLite<span class="soon">soon</span></li><li>SQL Server<span class="soon">soon</span></li><li>Snowflake<span class="soon">soon</span></li><li>Databricks<span class="soon">soon</span></li><li>BigQuery<span class="soon">soon</span></li><li>S3 / GCS / Azure<span class="soon">soon</span></li>
+          </ul>
+          <ul class="marquee-list" aria-hidden="true">
+            <li>Parquet</li><li>CSV</li><li>JSON</li><li>Excel</li><li>DuckDB</li>
+            <li>Postgres<span class="soon">soon</span></li><li>MySQL<span class="soon">soon</span></li><li>SQLite<span class="soon">soon</span></li><li>SQL Server<span class="soon">soon</span></li><li>Snowflake<span class="soon">soon</span></li><li>Databricks<span class="soon">soon</span></li><li>BigQuery<span class="soon">soon</span></li><li>S3 / GCS / Azure<span class="soon">soon</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3b. Why Oxi -->
+    <section id="why" class="section" aria-labelledby="why-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// why oxi</p>
+          <h2 id="why-title">Why Oxi</h2>
+          <p class="why-tag">Your data. Your laptop. <span class="hl">Fast answers.</span></p>
+          <p>Dashboards bill per query, keep metrics in two places and upload your extracts. Oxi runs the same work on your machine.</p>
+        </header>
+        <ul class="feat-grid">
+          <li class="feat reveal"><p class="fnum">01 &middot; data stays local</p><h3>Nothing leaves your machine.</h3><p>No uploads, no telemetry, no network calls. Queries run in embedded DuckDB on your own CPU.</p></li>
+          <li class="feat reveal"><p class="fnum">02 &middot; no server</p><h3>Open a folder and query it.</h3><p>Parquet, CSV, JSON, Excel and DuckDB files appear as datasets. No server or warehouse to set up.</p></li>
+          <li class="feat reveal"><p class="fnum">03 &middot; fast on a laptop</p><h3>100M rows, 5.6 s uncached.</h3><p>Dashboard reloads on an M1 Mac with 8 GB RAM. Cached reloads take under 1 ms on the backend, and peak memory stays under 400 MB.</p></li>
+          <li class="feat reveal"><p class="fnum">04 &middot; one set of numbers</p><h3>Metrics defined once.</h3><p>Semantic models are dbt-compatible YAML, validated live, with OSI import and export. Open formats, no lock-in.</p></li>
+          <li class="feat reveal"><p class="fnum">05 &middot; safe by default</p><h3>Read-only, SELECT only.</h3><p>Data files open read-only. The SQL console accepts only SELECT, and queries cannot read files outside the workspace.</p></li>
+          <li class="feat reveal"><p class="fnum">06 &middot; reuse what you have</p><h3>Bring your dbt projects and files.</h3><p>Use existing dbt projects, plus Parquet, CSV and Excel files. Coming: secure connections to Postgres, Snowflake, BigQuery and other databases.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Product blocks -->
+    <section id="product" class="section" aria-labelledby="product-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// product</p>
+          <h2 id="product-title">Four parts. One local engine.</h2>
+          <p>Connect your files, describe them once, and build dashboards on top. Everything runs on the laptop in front of you.</p>
+        </header>
+
+        <article class="block reveal" id="catalog" aria-labelledby="catalog-title">
+          <div class="block-text">
+            <p class="num">01</p>
+            <h3 id="catalog-title">Catalog</h3>
+            <p>Point it at folders. Oxi reads Parquet, CSV/TSV, JSON/NDJSON, Excel and DuckDB files, and shows them as datasets.</p>
+            <ul class="facts">
+              <li>Hive-partitioned folders and same-shaped files show as one dataset</li>
+              <li>Nested JSON and NDJSON, including gzip and zstd</li>
+              <li>Explore a dataset without leaving the catalog</li>
+            </ul>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / catalog</span></div>
+              <div class="frame-body">
+                <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+                <video data-video="catalog" muted playsinline loop preload="none" aria-label="Catalog: screen recording, muted, looping"></video>
+                <button type="button" class="vid-btn">Pause</button>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block flip reveal" id="semantic" aria-labelledby="semantic-title">
+          <div class="block-text">
+            <p class="num">02</p>
+            <h3 id="semantic-title">Semantic models</h3>
+            <p>Models live in dbt-compatible YAML, with MetricFlow-style metrics, entities and joins. Generate one from a dataset in one click.</p>
+            <ul class="facts">
+              <li>Simple, ratio, derived, cumulative and conversion metrics</li>
+              <li>Validated live as you edit</li>
+              <li>OSI (open semantic interchange) import and export</li>
+            </ul>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / model</span></div>
+              <div class="frame-body">
+                <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+                <video data-video="model" muted playsinline loop preload="none" aria-label="Semantic models: screen recording, muted, looping"></video>
+                <button type="button" class="vid-btn">Pause</button>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block reveal" id="dashboards" aria-labelledby="dashboards-title">
+          <div class="block-text">
+            <p class="num">03</p>
+            <h3 id="dashboards-title">Dashboards</h3>
+            <p>Ten card types, slicers and cross-filter, with drill-through pages for the detail behind every number.</p>
+            <ul class="facts">
+              <li>Quick measures: YoY % and % of total</li>
+              <li>A live performance panel records every reload's timing</li>
+              <li>Cached reloads return in under a millisecond</li>
+            </ul>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / dashboard</span></div>
+              <div class="frame-body">
+                <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+                <video data-video="dashboard" muted playsinline loop preload="none" aria-label="Dashboards: screen recording, muted, looping"></video>
+                <button type="button" class="vid-btn">Pause</button>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block flip reveal" id="secure" aria-labelledby="secure-title">
+          <div class="block-text">
+            <p class="num">04</p>
+            <h3 id="secure-title">Secure by design</h3>
+            <p>Local-first. No telemetry and no network calls, so your data never leaves the laptop.</p>
+            <ul class="facts">
+              <li>The SQL console is SELECT-only and cannot read files outside the workspace</li>
+              <li>Coming: read-only connections, credentials in the OS keychain, PII detection</li>
+            </ul>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / secure</span></div>
+              <div class="frame-body">
+                <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+                <video data-video="secure" muted playsinline loop preload="none" aria-label="Secure by design: screen recording, muted, looping"></video>
+                <button type="button" class="vid-btn">Pause</button>
+              </div>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. How it works -->
+    <section id="demos" class="section" aria-labelledby="demos-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// demos</p>
+          <h2 id="demos-title">How it works</h2>
+          <p>Short screen recordings with the steps shown beside each one.</p>
+        </header>
+        <div id="demo-list"></div>
+        <noscript><p class="muted">The demos need JavaScript to load. The product sections above still describe each feature.</p></noscript>
+      </div>
+    </section>
+
+    <template id="demo-tpl">
+      <article class="demo reveal">
+        <div class="demo-media">
+          <figure class="frame">
+            <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title"></span></div>
+            <div class="frame-body">
+              <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
+              <video muted playsinline loop preload="none"></video>
+              <button type="button" class="vid-btn">Pause</button>
+            </div>
+          </figure>
+        </div>
+        <div class="demo-steps">
+          <h3 class="demo-title"><span class="num"></span><span class="demo-name"></span></h3>
+          <ol class="steps"></ol>
+        </div>
+      </article>
+    </template>
+
+    <!-- 5b. Teams -->
+    <section id="teams" class="section" aria-labelledby="teams-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// teams</p>
+          <h2 id="teams-title">Built for every team size</h2>
+        </header>
+        <ul class="feat-grid team-grid">
+          <li class="feat reveal">
+            <div class="team-top">
+              <svg class="team-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="4" y="5" width="16" height="11"/><path d="M2 20h20"/></svg>
+              <p class="fnum">f.01</p>
+            </div>
+            <h3>Solo analyst or consultant</h3>
+            <p class="card-lead">Your laptop is the whole stack.</p>
+            <p>Open a client folder and start. Extracts never leave the machine, and models stay valid dbt.</p>
+          </li>
+          <li class="feat reveal">
+            <div class="team-top">
+              <svg class="team-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="8" cy="8" r="3"/><path d="M2 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8v1"/></svg>
+              <p class="fnum">f.02</p>
+            </div>
+            <h3>Startup or small team (2&#8288;&ndash;&#8288;20)</h3>
+            <p class="card-lead">Dashboards that review like code.</p>
+            <p>Models and dashboards are plain YAML files, so they diff and review in Git.</p>
+          </li>
+          <li class="feat reveal">
+            <div class="team-top">
+              <svg class="team-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12.5l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+              <p class="fnum">f.03</p>
+            </div>
+            <h3>Growing data team (20&#8288;&ndash;&#8288;200)</h3>
+            <p class="card-lead">One semantic layer.</p>
+            <p>Every dashboard reads the same metric definitions, with OSI import and export for interchange.</p>
+          </li>
+          <li class="feat reveal">
+            <div class="team-top">
+              <svg class="team-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <p class="fnum">f.04 <span class="soon">coming</span></p>
+            </div>
+            <h3>Departments with sensitive data</h3>
+            <p class="card-lead">Read-only today, keychain and PII detection coming.</p>
+            <p>Today: data stays on the machine and SQL is SELECT-only. Coming: OS keychain credentials, PII detection and secure database connections.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. Feature grid -->
+    <section id="features" class="section" aria-labelledby="features-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// features</p>
+          <h2 id="features-title">Everything in the box</h2>
+        </header>
+        <ul class="feat-grid">
+          <li class="feat reveal"><p class="fnum">f.01</p><h3>Folder catalog</h3><p>Point Oxi at folders. Files and DuckDB databases appear as datasets.</p></li>
+          <li class="feat reveal"><p class="fnum">f.02</p><h3>Partitioned data</h3><p>Hive-partitioned folders, and folders of same-shaped files, show as one dataset.</p></li>
+          <li class="feat reveal"><p class="fnum">f.03</p><h3>Nested JSON</h3><p>JSON and NDJSON with nested structure, gzip and zstd compression.</p></li>
+          <li class="feat reveal"><p class="fnum">f.04</p><h3>Excel and DuckDB</h3><p>Excel workbooks and DuckDB files sit in the catalog next to Parquet and CSV.</p></li>
+          <li class="feat reveal"><p class="fnum">f.05</p><h3>dbt-compatible YAML</h3><p>Semantic models are plain YAML, written in the dbt-compatible format.</p></li>
+          <li class="feat reveal"><p class="fnum">f.06</p><h3>Five metric types</h3><p>Simple, ratio, derived, cumulative and conversion metrics, MetricFlow-style.</p></li>
+          <li class="feat reveal"><p class="fnum">f.07</p><h3>Entities and joins</h3><p>Declare entities and joins in the model, and metrics use them.</p></li>
+          <li class="feat reveal"><p class="fnum">f.08</p><h3>One-click models</h3><p>Generate a semantic model from any dataset. It is validated live as you edit.</p></li>
+          <li class="feat reveal"><p class="fnum">f.09</p><h3>Open interchange</h3><p>OSI (open semantic interchange) import and export for your models.</p></li>
+          <li class="feat reveal"><p class="fnum">f.10</p><h3>Read-only SQL</h3><p>The SQL console accepts SELECT only and cannot read files outside the workspace.</p></li>
+          <li class="feat reveal"><p class="fnum">f.11</p><h3>Quick measures</h3><p>YoY % and % of total, added to a card without writing the formula.</p></li>
+          <li class="feat reveal"><p class="fnum">f.12</p><h3>Live performance panel</h3><p>Every reload's timing, cache use and filters, shown as it happens.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Architecture -->
+    <section id="architecture" class="section" aria-labelledby="arch-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// architecture</p>
+          <h2 id="arch-title">Local-first, end to end</h2>
+          <p>A Rust core reads your files, plans the work, and hands queries to DuckDB. The UI sits on top in a Tauri shell. Nothing crosses the network.</p>
+        </header>
+
+        <div class="arch-boundary reveal" role="group" aria-label="Architecture: files and databases feed a Rust core, which runs queries in DuckDB and shows results in the UI, all on your laptop">
+          <span class="boundary-label">your laptop &middot; no network calls</span>
+          <div class="arch-row">
+            <div class="node">
+              <h4>Files &amp; databases</h4>
+              <ul><li>Parquet</li><li>CSV / TSV</li><li>JSON / NDJSON</li><li>Excel</li><li>DuckDB files</li></ul>
+            </div>
+            <div class="wire" aria-hidden="true"><i></i></div>
+            <div class="node core">
+              <h4>Rust core</h4>
+              <p>catalog &middot; semantic layer &middot; planner</p>
+            </div>
+            <div class="wire" aria-hidden="true"><i></i></div>
+            <div class="node">
+              <h4>DuckDB</h4>
+              <p>query engine</p>
+            </div>
+            <div class="wire" aria-hidden="true"><i></i></div>
+            <div class="node">
+              <h4>UI</h4>
+              <p>React in a Tauri shell</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-notes reveal">
+          <div class="note"><strong>Local-first</strong><p>Datasets are read from the disks where they already live.</p></div>
+          <div class="note"><strong>No network</strong><p>No telemetry and no outbound calls. Your data never leaves the laptop.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7b. Workflow timeline -->
+    <section id="flow" class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// workflow</p>
+          <h2 id="flow-title">From files to a dashboard in minutes</h2>
+          <p>Four steps. Each takes under 20 seconds on screen.</p>
+        </header>
+        <ol class="flow reveal">
+          <li class="flow-step">
+            <span class="flow-node" aria-hidden="true">01</span>
+            <div class="flow-body">
+              <h3>Point at a folder <span class="flow-time">&lt; 20 s</span></h3>
+              <p>Catalog lists each file as a dataset, with row count and schema.</p>
+            </div>
+          </li>
+          <li class="flow-step">
+            <span class="flow-node" aria-hidden="true">02</span>
+            <div class="flow-body">
+              <h3>Generate a model <span class="flow-time">&lt; 20 s</span></h3>
+              <p>One click drafts dbt-compatible YAML from the columns. The validator marks it Valid.</p>
+            </div>
+          </li>
+          <li class="flow-step">
+            <span class="flow-node" aria-hidden="true">03</span>
+            <div class="flow-body">
+              <h3>Explore and query <span class="flow-time">&lt; 20 s</span></h3>
+              <p>Preview and profile the data, or write SQL. Save any result as a card.</p>
+            </div>
+          </li>
+          <li class="flow-step">
+            <span class="flow-node" aria-hidden="true">04</span>
+            <div class="flow-body">
+              <h3>Build the dashboard <span class="flow-time">&lt; 20 s</span></h3>
+              <p>Add slicers, cross-filter cards and drill through. Cached reloads take 0.4&ndash;0.5 ms on the backend.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="flow-note"><em>Based on the recorded demos on an M-series Mac with the sample data. Each step is under 20 s of screen time; the clips were recorded at a deliberately slow pace.</em></p>
+      </div>
+    </section>
+
+    <!-- 8. Benchmarks -->
+    <section id="benchmarks" class="section" aria-labelledby="bench-title">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <p class="eyebrow">// benchmarks</p>
+          <h2 id="bench-title">Measured on a laptop</h2>
+          <p>Numbers from an 8-card dashboard on an M-series Mac.</p>
+        </header>
+
+        <div class="bench-grid reveal">
+          <div class="bench"><strong>5.6 s</strong><span>100M Parquet rows reload, uncached</span></div>
+          <div class="bench"><strong>&lt;1 ms</strong><span>cached reload, at any size</span></div>
+          <div class="bench"><strong>&lt;400 MB</strong><span>peak memory with 100M rows</span></div>
+          <div class="bench"><strong>~55 ms</strong><span>per million Parquet rows</span></div>
+        </div>
+
+        <div class="bars reveal" aria-label="Reload time comparison">
+          <div class="bar-row">
+            <div class="bar-label"><span>Uncached reload, 100M rows</span><span>5.6 s</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w: 100%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Cached reload</span><span>&lt; 1 ms</span></div>
+            <div class="bar-track"><div class="bar-fill alt" style="--w: 0.5%"></div></div>
+          </div>
+          <p class="bar-note">Bars are to scale for the uncached time. The cached bar is drawn at a minimum width.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Closing CTA -->
+    <section class="cta section" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta-box reveal">
+          <h2 id="cta-title">Try it while it's early.</h2>
+          <p>Oxi is v0.1. There is no pricing yet. Get early access and see how your own files behave.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">Get early access</a>
+            <a class="btn btn-ghost" href="#">Read the docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="#top" aria-label="Oxi home"><span class="mark" aria-hidden="true"></span><span>oxi</span></a>
+        <p class="foot-note">v0.1 &middot; No telemetry &middot; No network calls</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="#product">Product</a></li>
+          <li><a href="#demos">Demos</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#benchmarks">Benchmarks</a></li>
+          <li><a href="#">Docs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

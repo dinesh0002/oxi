@@ -1,0 +1,63 @@
+[
+  {
+    "id": "catalog",
+    "title": "Browse every dataset",
+    "file": "catalog.webm",
+    "poster": "catalog.png",
+    "steps": [
+      "Open Catalog: Parquet, CSV, JSON, NDJSON and Excel files appear as datasets",
+      "Folder datasets, like a partitioned Parquet table, sit alongside single files",
+      "Pick a dataset to see its row count and column schema",
+      "Switch to Preview to read the first rows",
+      "Open Profile for null rates and value stats per column"
+    ]
+  },
+  {
+    "id": "model",
+    "title": "Turn a file into a semantic model",
+    "file": "model.webm",
+    "poster": "model.png",
+    "steps": [
+      "Select a file and choose Create model",
+      "Oxi drafts a dbt-compatible YAML model from the file's columns",
+      "The validator checks the model: the status reads Valid",
+      "Save writes the model into the workspace's models folder"
+    ]
+  },
+  {
+    "id": "dashboard",
+    "title": "Slice and cross-filter a dashboard",
+    "file": "dashboard.webm",
+    "poster": "dashboard.png",
+    "steps": [
+      "Open the Sales overview dashboard: every card runs its query on DuckDB",
+      "Add a Region slicer to narrow all the cards at once",
+      "Click a slice to cross-filter the other cards on that channel",
+      "The performance panel logs each card's timing, cache use and filters"
+    ]
+  },
+  {
+    "id": "sql",
+    "title": "Query models with SQL, then chart the result",
+    "file": "sql.webm",
+    "poster": "sql.png",
+    "steps": [
+      "Write SQL over the sales model in the SQL console",
+      "Run it: the result appears in a grid",
+      "Save the result as a card with a bar chart",
+      "The chart lands on the Sales pages dashboard"
+    ]
+  },
+  {
+    "id": "nested-json",
+    "title": "Flatten nested JSON into tables",
+    "file": "nested-json.webm",
+    "poster": "nested-json.png",
+    "steps": [
+      "Open orders.json: Oxi shows its nested structure as a tree",
+      "Arrays of objects become a child table automatically",
+      "The preview shows nested fields flattened, such as customer_address_city",
+      "Switch to the items table to see one row per SKU"
+    ]
+  }
+]

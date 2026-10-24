@@ -1,0 +1,13 @@
+{
+  "name": "oxi-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 5190 --bind 127.0.0.1",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
