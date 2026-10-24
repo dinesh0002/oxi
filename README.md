@@ -1,7 +1,35 @@
 # Oxi site
 
-The marketing site for Oxi, a local-first desktop BI app. Plain HTML, CSS and vanilla JS.
-No framework, no bundler, no build step. Fonts come from Google Fonts.
+The marketing site for Oxi. Plain HTML, CSS and vanilla JS. No framework, no bundler,
+no build step. Fonts come from Google Fonts.
+
+## What is Oxi
+
+Oxi is a local-first desktop BI app. It runs entirely on your machine: point it at your
+files, model them once, and build dashboards on top.
+
+- **Catalog**: point it at folders and Oxi shows Parquet, CSV/TSV, JSON/NDJSON, Excel and
+  DuckDB files as datasets.
+- **Semantic models**: metrics, entities and joins live in dbt-compatible YAML, validated
+  live as you edit, with OSI (open semantic interchange) import and export.
+- **Dashboards**: card types, slicers, cross-filter and drill-through pages.
+- **Engine**: a Rust core with embedded DuckDB, and a React UI in a Tauri shell.
+
+Oxi is early (v0.1). Connections to databases such as Postgres, Snowflake and BigQuery
+are coming.
+
+## Why Oxi
+
+Hosted BI tools bill per query, keep metric definitions in more than one place, and make
+you upload your extracts to someone else's servers. Oxi does the same work on your laptop:
+
+- **Your data stays local.** No uploads, no telemetry, no network calls.
+- **No server to run.** Open a folder and query it. No warehouse to set up.
+- **Fast on a laptop.** 100M rows reload in 5.6 s uncached on an M1 Mac with 8 GB RAM,
+  and cached reloads take under 1 ms on the backend.
+- **One set of numbers.** Metrics are defined once in open formats, with no lock-in.
+- **Safe by default.** Data files open read-only, and the SQL console accepts only
+  `SELECT` and cannot read files outside the workspace.
 
 ## Run it locally
 
@@ -21,7 +49,8 @@ just to view the site.
 5. Press `Ctrl+C` in the terminal to stop the server.
 
 If port 5190 is busy, pick another one, for example `python3 -m http.server 8080 --bind 127.0.0.1`.
-Any static server works too (for example `npx serve .`). Opening `index.html` straight from disk also works, but
+Keep `--bind 127.0.0.1` so the server is only reachable from your own machine, not from
+other devices on your network. Opening `index.html` straight from disk also works, but
 `captions.json` is then blocked by some browsers and the built-in demo list is used.
 
 ## Test
@@ -37,24 +66,28 @@ They start their own server on port 5191, so `npm run serve` can keep running on
 The suite covers load and console errors, asset URLs, horizontal scroll, text size,
 touch targets, the mobile menu, the GitHub link and reduced motion.
 
-## Deploy
+## Security
 
-Hosted on Vercel as a static site. `.github/workflows/deploy.yml` runs the tests, then:
+The site is static: no backend, no accounts, no forms, no cookies and no tracking.
+Keep it that way.
 
-- push to `main` deploys to production
-- a pull request deploys a preview (not for forks, which have no secrets)
-
-One-time setup:
-
-1. Create the Vercel project: run `npx vercel link` once in this folder, then note the
-   `orgId` and `projectId` in `.vercel/project.json`.
-2. In GitHub, add these repository secrets:
-   - `VERCEL_TOKEN`: a Vercel access token
-   - `VERCEL_ORG_ID`: the `orgId` from `.vercel/project.json`
-   - `VERCEL_PROJECT_ID`: the `projectId` from `.vercel/project.json`
-
-`vercel.json` sets the security headers and the Content-Security-Policy. If you add an
-external script, style or font origin, update the policy there.
+- **Never commit secrets.** No tokens, keys, passwords or `.env` files. `.gitignore`
+  already excludes `node_modules`, test output and local host config. If a secret is ever
+  pushed, revoke it first, then remove it from the history.
+- **Content-Security-Policy and headers.** `vercel.json` sets `nosniff`,
+  `X-Frame-Options: DENY`, a strict referrer policy and a CSP that allows only this site
+  and Google Fonts. The local Python server does not send these headers, so test CSP
+  changes on a preview of the hosted site.
+- **Inline script hash.** The one inline `<script>` in `index.html` is allowed by its
+  SHA-256 hash in the CSP. If you change that script, update the hash.
+- **New external origins** (scripts, styles, fonts, images) need a CSP change and a reason
+  in the pull request. Do not add third-party analytics or trackers.
+- **Dependencies.** Playwright is the only dependency, and it is dev-only. Its version is
+  pinned and `package-lock.json` is committed; install with `npm ci`.
+- **Demo recordings.** No local paths, usernames or real data may be visible. Check the
+  videos and posters in `assets/videos/` before you commit.
+- **Reporting a vulnerability.** Do not open a public issue. Use GitHub's private
+  vulnerability reporting (the repo's **Security** tab, then **Report a vulnerability**).
 
 ## Project structure
 
@@ -66,8 +99,8 @@ favicon.svg           square glyph in the brand colours
 assets/videos/        demo recordings (.webm), posters (.png) and captions.json
 tools/record-demos.mjs  re-records the demo videos from the Oxi app
 tests/site.spec.ts    Playwright checks
-vercel.json           headers, cache rules, static output
-.github/workflows/    ci.yml (tests) and deploy.yml (Vercel)
+vercel.json           security headers, CSP and cache rules
+.github/workflows/    CI workflows
 AGENTS.md             rules for coding agents (read first)
 ```
 
