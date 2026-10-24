@@ -221,7 +221,17 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- Vercel Web Analytics (cookieless, same-origin; skipped locally) ---------- */
+  function loadAnalytics() {
+    if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
+    var s = document.createElement('script');
+    s.src = '/_vercel/insights/script.js';
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
   /* ---------- Boot ---------- */
+  loadAnalytics();
   runTerminal();
   setupReveals($$('.reveal'));
 

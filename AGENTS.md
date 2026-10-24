@@ -5,7 +5,8 @@ Read this before changing anything.
 ## Purpose
 
 The marketing site for **Oxi**, a local-first desktop BI app. It explains the product, shows
-the demos and sets early-access expectations. It has no backend, no accounts and no tracking.
+the demos and sets early-access expectations. It has no backend and no accounts. The only analytics is cookieless Vercel Web
+Analytics, loaded by `main.js` on the deployed site only; do not add other tracking.
 
 Brand note: the product brand is **Oxi**. Some names inside the app and its tooling still say
 `oxicore` (the app repo, `oxicore-devserver`, the `oxicore.yml` workspace file and the
@@ -22,7 +23,7 @@ assets/videos/        .webm demos, .png posters, captions.json (drives "How it w
 tools/record-demos.mjs  re-records the demos from the app repo (env OXICORE_REPO)
 tests/site.spec.ts    Playwright checks (desktop and mobile projects)
 vercel.json           headers, cache rules, CSP, static output
-.github/workflows/    ci.yml (tests), deploy.yml (Vercel preview and production)
+.github/workflows/    ci.yml (tests on pull requests and main)
 ```
 
 ## How to run and test
@@ -77,9 +78,10 @@ vercel.json           headers, cache rules, CSP, static output
    and tokens. Add one test per new behaviour.
 9. **Before finishing any change:** run `npx playwright test` until it is green, and look at
    the 390 px and 1440 px screenshots of the page.
-10. **Deploy only through the GitHub workflow** (`deploy.yml`). Do not run `vercel deploy`
-    from a laptop.
-11. **Never commit secrets.** Vercel tokens and org/project ids live in GitHub secrets only.
+10. **Never deploy.** The Vercel Git integration has auto-deploys off
+    (`"git": { "deploymentEnabled": false }` in `vercel.json`); a maintainer deploys by hand
+    from the Vercel dashboard. Do not run `vercel deploy` or add a deploy workflow.
+11. **Never commit secrets.** No tokens, keys, `.env` files or `.vercel/` folder.
 12. **The GitHub link is a placeholder.** The header and mobile link is `href="#"` with
     `data-github-link` and `aria-disabled="true"`, and it has a `TODO` comment in `index.html`.
     Set the URL only when the repo is public, and update the TODO.

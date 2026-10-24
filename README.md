@@ -68,8 +68,12 @@ touch targets, the mobile menu, the GitHub link and reduced motion.
 
 ## Security
 
-The site is static: no backend, no accounts, no forms, no cookies and no tracking.
-Keep it that way.
+The site is static: no backend, no accounts, no forms and no cookies. Keep it that way.
+
+- **Analytics.** The only analytics is Vercel Web Analytics: cookieless, no personal data,
+  served from this site's own origin (`/_vercel/insights/`). `main.js` loads it only on the
+  deployed site, never on `localhost` or `127.0.0.1`. Turn it on under **Project → Analytics
+  → Enable** in Vercel, then redeploy.
 
 - **Never commit secrets.** No tokens, keys, passwords or `.env` files. `.gitignore`
   already excludes `node_modules`, test output and local host config. If a secret is ever
@@ -81,7 +85,7 @@ Keep it that way.
 - **Inline script hash.** The one inline `<script>` in `index.html` is allowed by its
   SHA-256 hash in the CSP. If you change that script, update the hash.
 - **New external origins** (scripts, styles, fonts, images) need a CSP change and a reason
-  in the pull request. Do not add third-party analytics or trackers.
+  in the pull request. Do not add other analytics or trackers.
 - **Dependencies.** Playwright is the only dependency, and it is dev-only. Its version is
   pinned and `package-lock.json` is committed; install with `npm ci`.
 - **Demo recordings.** No local paths, usernames or real data may be visible. Check the
@@ -99,8 +103,8 @@ favicon.svg           square glyph in the brand colours
 assets/videos/        demo recordings (.webm), posters (.png) and captions.json
 tools/record-demos.mjs  re-records the demo videos from the Oxi app
 tests/site.spec.ts    Playwright checks
-vercel.json           security headers, CSP and cache rules
-.github/workflows/    CI workflows
+vercel.json           security headers, CSP, cache rules, no auto-deploys
+.github/workflows/    ci.yml (tests)
 AGENTS.md             rules for coding agents (read first)
 ```
 
