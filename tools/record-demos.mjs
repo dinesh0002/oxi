@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const APP = process.env.OXICORE_REPO ?? "/Users/jyothsnapriya/Documents/BI/oxicore";
+const APP = process.env.OXICORE_REPO ?? join(dirname(fileURLToPath(import.meta.url)), "..", "..", "BI", "oxicore");
 const { chromium } = await import(`${APP}/node_modules/playwright/index.mjs`);
 const SITE = dirname(dirname(fileURLToPath(import.meta.url)));
 const OUT = join(SITE, "assets", "videos");
@@ -282,7 +282,7 @@ async function main() {
       rmSync(videoDir, { recursive: true, force: true });
       const ctx = await browser.newContext({
         viewport: { width: 1440, height: 900 },
-        deviceScaleFactor: 1,
+        deviceScaleFactor: 2,
         recordVideo: { dir: videoDir, size: { width: 1440, height: 900 } },
       });
       await ctx.addInitScript(CURSOR_JS);

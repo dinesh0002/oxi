@@ -27,7 +27,7 @@
           <li><a href="#demos">Demos</a></li>
           <li><a href="#teams">Teams</a></li>
           <li><a href="#benchmarks">Benchmarks</a></li>
-          <li><a href="#">Docs</a></li>
+          <li><a href="docs/">Docs</a></li>
           <li><!-- TODO: set the GitHub repo URL once Oxi is fully tested -->
             <a class="nav-gh" href="#" data-github-link aria-disabled="true" title="GitHub — link coming soon">
               <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -55,12 +55,12 @@
         <div class="hero-copy">
           <p class="eyebrow">// local-first BI &middot; v0.1, early</p>
           <h1 id="hero-title">Your data. Your laptop. <span class="hl">Instant answers.</span></h1>
-          <p class="lead">Oxi is a desktop BI app that runs entirely on your machine. Point it at your files, model them once, and build dashboards that reload in under a millisecond once cached.</p>
+          <p class="lead">Oxi is a desktop BI app. Point it at your files, model them once, and build dashboards that reload in under a millisecond once cached. Your files stay on your machine; databases are reached only through connections you approve.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#">Get early access</a>
             <a class="btn btn-ghost" href="#demos">See how it works</a>
           </div>
-          <p class="cta-note"><a class="link" href="#">Read the docs</a> &middot; No pricing yet</p>
+          <p class="cta-note"><a class="link" href="docs/">Read the docs</a> &middot; No pricing yet</p>
         </div>
 
         <div class="term reveal" role="img" aria-label="Example session: a metric query for revenue by region over the last 30 days returns three regions in 0.4 ms from cache. Sample data.">
@@ -95,7 +95,7 @@
       <ul class="wrap stat-grid">
         <li class="stat reveal"><strong>&lt;1 ms</strong><span>cached reload, backend only</span></li>
         <li class="stat reveal"><strong>5.6 s</strong><span>100M rows, uncached reload</span></li>
-        <li class="stat reveal"><strong>Zero</strong><span>telemetry, no network calls</span></li>
+        <li class="stat reveal"><strong>Zero</strong><span>telemetry; connections need your approval</span></li>
         <li class="stat reveal"><strong>dbt</strong><span>compatible models</span></li>
       </ul>
     </section>
@@ -105,12 +105,12 @@
       <div class="marquee-viewport">
         <div class="marquee-inner">
           <ul class="marquee-list">
-            <li>Parquet</li><li>CSV</li><li>JSON</li><li>Excel</li><li>DuckDB</li>
-            <li>Postgres<span class="soon">soon</span></li><li>MySQL<span class="soon">soon</span></li><li>SQLite<span class="soon">soon</span></li><li>SQL Server<span class="soon">soon</span></li><li>Snowflake<span class="soon">soon</span></li><li>Databricks<span class="soon">soon</span></li><li>BigQuery<span class="soon">soon</span></li><li>S3 / GCS / Azure<span class="soon">soon</span></li>
+            <li><span class="mq-badge" aria-hidden="true">PQ</span>Parquet</li><li><span class="mq-badge" aria-hidden="true">CSV</span>CSV</li><li><span class="mq-badge" aria-hidden="true">{}</span>JSON</li><li><span class="mq-badge" aria-hidden="true">XLS</span>Excel</li><li><img class="mq-logo" src="assets/logos/duckdb.svg" alt="" aria-hidden="true" width="20" height="20">DuckDB</li><li><img class="mq-logo" src="assets/logos/postgresql.svg" alt="" aria-hidden="true" width="20" height="20">Postgres</li><li><img class="mq-logo" src="assets/logos/mysql.svg" alt="" aria-hidden="true" width="20" height="20">MySQL</li><li><img class="mq-logo" src="assets/logos/sqlite.svg" alt="" aria-hidden="true" width="20" height="20">SQLite</li><li><img class="mq-logo" src="assets/logos/clickhouse.svg" alt="" aria-hidden="true" width="20" height="20">ClickHouse</li><li><span class="mq-badge" aria-hidden="true">S3</span>S3</li><li><span class="mq-badge" aria-hidden="true">AZ</span>Azure Blob</li><li><img class="mq-logo" src="assets/logos/googlecloudstorage.svg" alt="" aria-hidden="true" width="20" height="20">Google Cloud Storage</li><li><span class="mq-badge" aria-hidden="true">PBI</span>Power BI</li><li><span class="mq-badge" aria-hidden="true">TB</span>Tableau</li><li><img class="mq-logo" src="assets/logos/ollama.svg" alt="" aria-hidden="true" width="20" height="20">Ollama</li><li><img class="mq-logo" src="assets/logos/anthropic.svg" alt="" aria-hidden="true" width="20" height="20">Claude</li>
+            <li><img class="mq-logo" src="assets/logos/snowflake.svg" alt="" aria-hidden="true" width="20" height="20">Snowflake<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/databricks.svg" alt="" aria-hidden="true" width="20" height="20">Databricks<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/googlebigquery.svg" alt="" aria-hidden="true" width="20" height="20">BigQuery<span class="soon">coming</span></li><li><span class="mq-badge" aria-hidden="true">SR</span>StarRocks<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/apachedoris.svg" alt="" aria-hidden="true" width="20" height="20">Apache Doris<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/apachedruid.svg" alt="" aria-hidden="true" width="20" height="20">Apache Druid<span class="soon">coming</span></li><li><span class="mq-badge" aria-hidden="true">PN</span>Apache Pinot<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/mqtt.svg" alt="" aria-hidden="true" width="20" height="20">MQTT</li><li><img class="mq-logo" src="assets/logos/apachekafka.svg" alt="" aria-hidden="true" width="20" height="20">Apache Kafka<span class="soon">coming</span></li>
           </ul>
           <ul class="marquee-list" aria-hidden="true">
-            <li>Parquet</li><li>CSV</li><li>JSON</li><li>Excel</li><li>DuckDB</li>
-            <li>Postgres<span class="soon">soon</span></li><li>MySQL<span class="soon">soon</span></li><li>SQLite<span class="soon">soon</span></li><li>SQL Server<span class="soon">soon</span></li><li>Snowflake<span class="soon">soon</span></li><li>Databricks<span class="soon">soon</span></li><li>BigQuery<span class="soon">soon</span></li><li>S3 / GCS / Azure<span class="soon">soon</span></li>
+            <li><span class="mq-badge" aria-hidden="true">PQ</span>Parquet</li><li><span class="mq-badge" aria-hidden="true">CSV</span>CSV</li><li><span class="mq-badge" aria-hidden="true">{}</span>JSON</li><li><span class="mq-badge" aria-hidden="true">XLS</span>Excel</li><li><img class="mq-logo" src="assets/logos/duckdb.svg" alt="" aria-hidden="true" width="20" height="20">DuckDB</li><li><img class="mq-logo" src="assets/logos/postgresql.svg" alt="" aria-hidden="true" width="20" height="20">Postgres</li><li><img class="mq-logo" src="assets/logos/mysql.svg" alt="" aria-hidden="true" width="20" height="20">MySQL</li><li><img class="mq-logo" src="assets/logos/sqlite.svg" alt="" aria-hidden="true" width="20" height="20">SQLite</li><li><img class="mq-logo" src="assets/logos/clickhouse.svg" alt="" aria-hidden="true" width="20" height="20">ClickHouse</li><li><span class="mq-badge" aria-hidden="true">S3</span>S3</li><li><span class="mq-badge" aria-hidden="true">AZ</span>Azure Blob</li><li><img class="mq-logo" src="assets/logos/googlecloudstorage.svg" alt="" aria-hidden="true" width="20" height="20">Google Cloud Storage</li><li><span class="mq-badge" aria-hidden="true">PBI</span>Power BI</li><li><span class="mq-badge" aria-hidden="true">TB</span>Tableau</li><li><img class="mq-logo" src="assets/logos/ollama.svg" alt="" aria-hidden="true" width="20" height="20">Ollama</li><li><img class="mq-logo" src="assets/logos/anthropic.svg" alt="" aria-hidden="true" width="20" height="20">Claude</li>
+            <li><img class="mq-logo" src="assets/logos/snowflake.svg" alt="" aria-hidden="true" width="20" height="20">Snowflake<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/databricks.svg" alt="" aria-hidden="true" width="20" height="20">Databricks<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/googlebigquery.svg" alt="" aria-hidden="true" width="20" height="20">BigQuery<span class="soon">coming</span></li><li><span class="mq-badge" aria-hidden="true">SR</span>StarRocks<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/apachedoris.svg" alt="" aria-hidden="true" width="20" height="20">Apache Doris<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/apachedruid.svg" alt="" aria-hidden="true" width="20" height="20">Apache Druid<span class="soon">coming</span></li><li><span class="mq-badge" aria-hidden="true">PN</span>Apache Pinot<span class="soon">coming</span></li><li><img class="mq-logo" src="assets/logos/mqtt.svg" alt="" aria-hidden="true" width="20" height="20">MQTT</li><li><img class="mq-logo" src="assets/logos/apachekafka.svg" alt="" aria-hidden="true" width="20" height="20">Apache Kafka<span class="soon">coming</span></li>
           </ul>
         </div>
       </div>
@@ -126,12 +126,12 @@
           <p>Dashboards bill per query, keep metrics in two places and upload your extracts. Oxi runs the same work on your machine.</p>
         </header>
         <ul class="feat-grid">
-          <li class="feat reveal"><p class="fnum">01 &middot; data stays local</p><h3>Nothing leaves your machine.</h3><p>No uploads, no telemetry, no network calls. Queries run in embedded DuckDB on your own CPU.</p></li>
+          <li class="feat reveal"><p class="fnum">01 &middot; data stays local</p><h3>Nothing leaves your machine.</h3><p>No uploads and no telemetry. Queries run in embedded DuckDB on your own CPU. The network is used only for connections you approve.</p></li>
           <li class="feat reveal"><p class="fnum">02 &middot; no server</p><h3>Open a folder and query it.</h3><p>Parquet, CSV, JSON, Excel and DuckDB files appear as datasets. No server or warehouse to set up.</p></li>
           <li class="feat reveal"><p class="fnum">03 &middot; fast on a laptop</p><h3>100M rows, 5.6 s uncached.</h3><p>Dashboard reloads on an M1 Mac with 8 GB RAM. Cached reloads take under 1 ms on the backend, and peak memory stays under 400 MB.</p></li>
           <li class="feat reveal"><p class="fnum">04 &middot; one set of numbers</p><h3>Metrics defined once.</h3><p>Semantic models are dbt-compatible YAML, validated live, with OSI import and export. Open formats, no lock-in.</p></li>
           <li class="feat reveal"><p class="fnum">05 &middot; safe by default</p><h3>Read-only, SELECT only.</h3><p>Data files open read-only. The SQL console accepts only SELECT, and queries cannot read files outside the workspace.</p></li>
-          <li class="feat reveal"><p class="fnum">06 &middot; reuse what you have</p><h3>Bring your dbt projects and files.</h3><p>Use existing dbt projects, plus Parquet, CSV and Excel files. Coming: secure connections to Postgres, Snowflake, BigQuery and other databases.</p></li>
+          <li class="feat reveal"><p class="fnum">06 &middot; reuse what you have</p><h3>Bring your dbt projects, files and databases.</h3><p>Use existing dbt and Power BI or Tableau projects, Parquet, CSV and Excel files, and approved connections to Postgres, MySQL, SQLite, DuckDB and ClickHouse. Coming: Snowflake, BigQuery and Databricks.</p></li>
         </ul>
       </div>
     </section>
@@ -141,8 +141,8 @@
       <div class="wrap">
         <header class="sec-head reveal">
           <p class="eyebrow">// product</p>
-          <h2 id="product-title">Four parts. One local engine.</h2>
-          <p>Connect your files, describe them once, and build dashboards on top. Everything runs on the laptop in front of you.</p>
+          <h2 id="product-title">Explore, trust, migrate and connect.</h2>
+          <p>Connect your files, describe them once, and build dashboards on top. Oxi runs the work on the laptop in front of you.</p>
         </header>
 
         <article class="block reveal" id="catalog" aria-labelledby="catalog-title">
@@ -154,6 +154,7 @@
               <li>Hive-partitioned folders and same-shaped files show as one dataset</li>
               <li>Nested JSON and NDJSON, including gzip and zstd</li>
               <li>Explore a dataset without leaving the catalog</li>
+              <li>Databases and cloud storage you connect appear in the same list</li>
             </ul>
           </div>
           <div class="block-media">
@@ -172,11 +173,12 @@
           <div class="block-text">
             <p class="num">02</p>
             <h3 id="semantic-title">Semantic models</h3>
-            <p>Models live in dbt-compatible YAML, with MetricFlow-style metrics, entities and joins. Generate one from a dataset in one click.</p>
+            <p>Models live in dbt-compatible YAML, with metrics, entities and joins. Generate one from a dataset in one click, then read the lineage of every join.</p>
             <ul class="facts">
-              <li>Simple, ratio, derived, cumulative and conversion metrics</li>
+              <li>Simple and ratio metrics, with count distinct, median and percentile</li>
               <li>Validated live as you edit</li>
               <li>OSI (open semantic interchange) import and export</li>
+              <li>Lineage: a graph from sources to models, metrics and dashboards, plus every join with its keys and cardinality, and every multi-hop path</li>
             </ul>
           </div>
           <div class="block-media">
@@ -200,6 +202,7 @@
               <li>Quick measures: YoY % and % of total</li>
               <li>A live performance panel records every reload's timing</li>
               <li>Cached reloads return in under a millisecond</li>
+              <li>Real-time cards refresh every 1 to 10 seconds, with a Live badge</li>
             </ul>
           </div>
           <div class="block-media">
@@ -218,20 +221,105 @@
           <div class="block-text">
             <p class="num">04</p>
             <h3 id="secure-title">Secure by design</h3>
-            <p>Local-first. No telemetry and no network calls, so your data never leaves the laptop.</p>
+            <p>Local-first, with no telemetry. A database or cloud store is reached only through a connection you have approved.</p>
             <ul class="facts">
               <li>The SQL console is SELECT-only and cannot read files outside the workspace</li>
-              <li>Coming: read-only connections, credentials in the OS keychain, PII detection</li>
+              <li>Each connection needs your approval, and a changed definition needs it again</li>
+              <li>Passwords and keys live in the OS keychain, never in the workspace file</li>
+              <li>SSH tunnels check the server's host key before they connect</li>
+              <li>Coming: PII detection</li>
             </ul>
           </div>
           <div class="block-media">
             <figure class="frame">
               <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / secure</span></div>
-              <div class="frame-body">
-                <div class="frame-ph" aria-hidden="true"><span>Screen recording coming soon</span></div>
-                <video data-video="secure" muted playsinline loop preload="none" aria-label="Secure by design: screen recording, muted, looping"></video>
-                <button type="button" class="vid-btn">Pause</button>
-              </div>
+              <div class="frame-body shot"><img src="assets/screens/secure-approval.png" alt="Connection waiting for approval: the Shop copy SQLite connection shows a Needs approval banner and an Allow on this computer button, and nothing connects until it is allowed. Sample data." width="648" height="281" loading="lazy"></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block flip reveal" id="trust" aria-labelledby="trust-title">
+          <div class="block-text">
+            <p class="num">05</p>
+            <h3 id="trust-title">Trusted answers</h3>
+            <p>Ask in plain English. Oxi answers only with metrics you have defined, and every answer shows its metrics, status and SQL.</p>
+            <ul class="facts">
+              <li>Ask uses Claude or a local Ollama model; the model may choose only defined metrics</li>
+              <li>Metric tests and certification show each metric as certified, tested, failing or untested</li>
+              <li>A per-workspace accuracy check, with the wrong-answer rate as the headline</li>
+            </ul>
+            <p class="block-link"><a class="link" href="docs/#trusted-answers">Read the docs</a></p>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / ask</span></div>
+              <div class="frame-body shot"><img src="assets/screens/explore-ask.png" alt="Ask answer: the metric Revenue is certified, the answer shows its status line and a value of 50.5M. Sample data." width="518" height="343" loading="lazy"></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block reveal" id="migrate" aria-labelledby="migrate-title">
+          <div class="block-text">
+            <p class="num">06</p>
+            <h3 id="migrate-title">Migrate from Power BI and Tableau</h3>
+            <p>Import a Power BI project (.pbip) or a Tableau workbook (.twb, .twbx) into Oxi models and dashboards. The preview shows the coverage first, and nothing is written until you import.</p>
+            <ul class="facts">
+              <li>Reconciliation checks migrated measures against the numbers the original tool produced</li>
+              <li>The review queue accepts an AI draft only when its checks pass</li>
+              <li>Functions Oxi does not recognise are listed for review, not guessed</li>
+            </ul>
+            <p class="block-link"><a class="link" href="docs/#migration">Read the docs</a></p>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / review</span></div>
+              <div class="frame-body shot shot-auto"><img src="assets/screens/migration-review.png" alt="Migration review queue: five Power BI measures need review, each with the unrecognised function it uses. Sample data." width="484" height="446" loading="lazy"></div>
+            </figure>
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / tableau</span></div>
+              <div class="frame-body shot"><img src="assets/screens/tableau-preview.png" alt="Tableau import preview: 19 of 28 calculated fields translated, three of three worksheets migrated, with dataset mapping per table. Sample data." width="788" height="220" loading="lazy"></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block flip reveal" id="connect" aria-labelledby="connect-title">
+          <div class="block-text">
+            <p class="num">07</p>
+            <h3 id="connect-title">Connect to databases and cloud storage</h3>
+            <p>Add a database or a cloud bucket, and Oxi lists its tables next to your files. Each connection is approved on this computer before it connects.</p>
+            <ul class="facts">
+              <li>Postgres, MySQL, SQLite, DuckDB and ClickHouse; SSH tunnels with host-key checks; AWS RDS sign-in</li>
+              <li>Amazon S3 and S3-compatible, Azure Blob and ADLS; Google Cloud Storage with verification pending</li>
+              <li>An encrypted local extract cache, with auto, live or extract retrieval</li>
+              <li>Coming: Snowflake, BigQuery, Databricks, StarRocks, Apache Doris, Druid and Pinot</li>
+            </ul>
+            <p class="block-link"><a class="link" href="docs/#connections">Read the docs</a></p>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / connections</span></div>
+              <div class="frame-body shot"><img src="assets/screens/connections.png" alt="Connections page: a SQLite connection that is connected, and a second one that waits for approval before it connects. Paths are masked. Sample data." width="664" height="489" loading="lazy"></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="block reveal" id="live" aria-labelledby="live-title">
+          <div class="block-text">
+            <p class="num">08</p>
+            <h3 id="live-title">Real-time dashboards</h3>
+            <p>Set auto-refresh from 1 to 10 seconds. A Live badge shows when the cards last updated, and refreshing pauses while the tab is hidden.</p>
+            <ul class="facts">
+              <li>Filters for the last N minutes or hours</li>
+              <li>A demo sensor source is built, with a two-minute setup</li>
+              <li>MQTT brokers and HTTP APIs (polling), with approval, keychain sign-in and TLS</li>
+              <li>Coming: WebSocket, SSE and Kafka</li>
+            </ul>
+            <p class="block-link"><a class="link" href="docs/#real-time">Read the docs</a></p>
+          </div>
+          <div class="block-media">
+            <figure class="frame">
+              <div class="frame-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">oxi / live</span></div>
+              <div class="frame-body shot"><img src="assets/screens/dashboard-live.png" alt="Sales overview dashboard toolbar with auto-refresh set to 1 second: the Live badge reads Live, updated 0 seconds ago, beside two KPI cards. Sample data." width="598" height="319" loading="lazy"></div>
             </figure>
           </div>
         </article>
@@ -308,11 +396,11 @@
           <li class="feat reveal">
             <div class="team-top">
               <svg class="team-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-              <p class="fnum">f.04 <span class="soon">coming</span></p>
+              <p class="fnum">f.04</p>
             </div>
             <h3>Departments with sensitive data</h3>
-            <p class="card-lead">Read-only today, keychain and PII detection coming.</p>
-            <p>Today: data stays on the machine and SQL is SELECT-only. Coming: OS keychain credentials, PII detection and secure database connections.</p>
+            <p class="card-lead">Read-only connections, approved per definition.</p>
+            <p>Connections are read-only, and their secrets sit in the OS keychain. Coming: PII detection.</p>
           </li>
         </ul>
       </div>
@@ -331,13 +419,18 @@
           <li class="feat reveal"><p class="fnum">f.03</p><h3>Nested JSON</h3><p>JSON and NDJSON with nested structure, gzip and zstd compression.</p></li>
           <li class="feat reveal"><p class="fnum">f.04</p><h3>Excel and DuckDB</h3><p>Excel workbooks and DuckDB files sit in the catalog next to Parquet and CSV.</p></li>
           <li class="feat reveal"><p class="fnum">f.05</p><h3>dbt-compatible YAML</h3><p>Semantic models are plain YAML, written in the dbt-compatible format.</p></li>
-          <li class="feat reveal"><p class="fnum">f.06</p><h3>Five metric types</h3><p>Simple, ratio, derived, cumulative and conversion metrics, MetricFlow-style.</p></li>
+          <li class="feat reveal"><p class="fnum">f.06</p><h3>Simple and ratio metrics</h3><p>Sum, count, count distinct, median, percentile and ratio metrics, defined in YAML.</p></li>
           <li class="feat reveal"><p class="fnum">f.07</p><h3>Entities and joins</h3><p>Declare entities and joins in the model, and metrics use them.</p></li>
           <li class="feat reveal"><p class="fnum">f.08</p><h3>One-click models</h3><p>Generate a semantic model from any dataset. It is validated live as you edit.</p></li>
           <li class="feat reveal"><p class="fnum">f.09</p><h3>Open interchange</h3><p>OSI (open semantic interchange) import and export for your models.</p></li>
           <li class="feat reveal"><p class="fnum">f.10</p><h3>Read-only SQL</h3><p>The SQL console accepts SELECT only and cannot read files outside the workspace.</p></li>
           <li class="feat reveal"><p class="fnum">f.11</p><h3>Quick measures</h3><p>YoY % and % of total, added to a card without writing the formula.</p></li>
           <li class="feat reveal"><p class="fnum">f.12</p><h3>Live performance panel</h3><p>Every reload's timing, cache use and filters, shown as it happens.</p></li>
+          <li class="feat reveal"><p class="fnum">f.13</p><h3>Database connections</h3><p>Postgres, MySQL, SQLite, DuckDB and ClickHouse, with SSH tunnels and AWS RDS sign-in.</p></li>
+          <li class="feat reveal"><p class="fnum">f.14</p><h3>Cloud storage</h3><p>Amazon S3 and S3-compatible, Azure Blob and ADLS. Google Cloud Storage is built; its verification is pending.</p></li>
+          <li class="feat reveal"><p class="fnum">f.15</p><h3>Trusted answers</h3><p>Ask in plain English. Answers use defined metrics only, and show their status and SQL.</p></li>
+          <li class="feat reveal"><p class="fnum">f.16</p><h3>Migration</h3><p>Import Power BI projects and Tableau workbooks, reconciled against the original numbers.</p></li>
+          <li class="feat reveal"><p class="fnum">f.17</p><h3>Real-time dashboards</h3><p>Refresh every 1 to 10 seconds, with a Live badge. Live sources: MQTT brokers, HTTP APIs (polling) and a demo sensor.</p></li>
         </ul>
       </div>
     </section>
@@ -348,11 +441,11 @@
         <header class="sec-head reveal">
           <p class="eyebrow">// architecture</p>
           <h2 id="arch-title">Local-first, end to end</h2>
-          <p>A Rust core reads your files, plans the work, and hands queries to DuckDB. The UI sits on top in a Tauri shell. Nothing crosses the network.</p>
+          <p>A Rust core reads your files, plans the work, and hands queries to DuckDB. The UI sits on top in a Tauri shell. Files are read on your laptop; only approved connections reach the network.</p>
         </header>
 
-        <div class="arch-boundary reveal" role="group" aria-label="Architecture: files and databases feed a Rust core, which runs queries in DuckDB and shows results in the UI, all on your laptop">
-          <span class="boundary-label">your laptop &middot; no network calls</span>
+        <div class="arch-boundary reveal" role="group" aria-label="Architecture: files and databases feed a Rust core, which runs queries in DuckDB and shows results in the UI, on your laptop">
+          <span class="boundary-label">your laptop &middot; network only for approved connections</span>
           <div class="arch-row">
             <div class="node">
               <h4>Files &amp; databases</h4>
@@ -378,7 +471,7 @@
 
         <div class="arch-notes reveal">
           <div class="note"><strong>Local-first</strong><p>Datasets are read from the disks where they already live.</p></div>
-          <div class="note"><strong>No network</strong><p>No telemetry and no outbound calls. Your data never leaves the laptop.</p></div>
+          <div class="note"><strong>No telemetry</strong><p>The app sends no usage data. Outbound traffic happens only for connections you approve.</p></div>
         </div>
       </div>
     </section>
@@ -463,7 +556,7 @@
           <p>Oxi is v0.1. There is no pricing yet. Get early access and see how your own files behave.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#">Get early access</a>
-            <a class="btn btn-ghost" href="#">Read the docs</a>
+            <a class="btn btn-ghost" href="docs/">Read the docs</a>
           </div>
         </div>
       </div>
@@ -474,7 +567,7 @@
     <div class="wrap footer-inner">
       <div>
         <a class="brand" href="#top" aria-label="Oxi home"><img class="logo" src="assets/logo.svg" alt="" width="52" height="36"></a>
-        <p class="foot-note">v0.1 &middot; No telemetry &middot; No network calls</p>
+        <p class="foot-note">v0.1 &middot; No telemetry &middot; Network only for approved connections</p>
       </div>
       <nav aria-label="Footer">
         <ul class="foot-links">
@@ -482,7 +575,7 @@
           <li><a href="#demos">Demos</a></li>
           <li><a href="#architecture">Architecture</a></li>
           <li><a href="#benchmarks">Benchmarks</a></li>
-          <li><a href="#">Docs</a></li>
+          <li><a href="docs/">Docs</a></li>
         </ul>
       </nav>
     </div>

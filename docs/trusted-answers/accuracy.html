@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accuracy check | Oxi docs</title>
+  <meta name="description" content="Re-ask saved questions and track the wrong-answer rate.">
+  <meta name="theme-color" content="#F6F8FC">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Oxi home"><img class="logo" src="../../assets/logo.svg" alt="" width="52" height="36"></a>
+
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="../../#why">Why</a></li>
+          <li><a href="../../#product">Product</a></li>
+          <li><a href="../../#demos">Demos</a></li>
+          <li><a href="../../#teams">Teams</a></li>
+          <li><a href="../../#benchmarks">Benchmarks</a></li>
+          <li><a href="../" aria-current="page">Docs</a></li>
+          <li>
+            <a class="nav-gh" href="#" data-github-link aria-disabled="true" title="GitHub — link coming soon">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.130-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          <li class="nav-cta"><a class="btn btn-primary btn-sm" href="../../">Get early access</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn search-btn" data-search-open aria-label="Search the docs" aria-keyshortcuts="Control+K Meta+K" title="Search the docs (Ctrl K or ⌘K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+<main id="main" class="doc-page">
+  <div class="wrap doc-layout">
+    <aside class="doc-side">
+      <button type="button" class="doc-side-toggle" id="doc-side-toggle" aria-expanded="false" aria-controls="doc-side-nav" aria-label="Show docs sections">Sections</button>
+      <nav id="doc-side-nav" class="doc-side-nav" aria-label="Docs sections">
+        <ul class="side-groups">
+          <li class="side-group"><a class="side-label" href="../#getting-started">Getting started</a>
+            <ul class="side-links"><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/quickstart.html">Quickstart</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#semantic-models">Semantic models</a>
+            <ul class="side-links"><li><a href="../semantic-models/models-metrics.html">Models and metrics</a></li><li><a href="../semantic-models/lineage.html">Lineage</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#trusted-answers">Trusted answers</a>
+            <ul class="side-links"><li><a href="../trusted-answers/ask-bar.html">Ask bar</a></li><li><a href="../trusted-answers/metric-trust.html">Metric trust</a></li><li><a href="../trusted-answers/accuracy.html" aria-current="page">Accuracy check</a></li><li><a href="../trusted-answers/ai-settings.html">AI settings</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#migration">Migration</a>
+            <ul class="side-links"><li><a href="../migration/power-bi.html">Power BI</a></li><li><a href="../migration/tableau.html">Tableau</a></li><li><a href="../migration/reconciliation.html">Reconciliation</a></li><li><a href="../migration/review-queue.html">Review queue</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#connections">Connections</a>
+            <ul class="side-links"><li><a href="../connections/overview.html">Overview</a></li><li><a href="../connections/postgres.html">PostgreSQL</a></li><li><a href="../connections/mysql.html">MySQL</a></li><li><a href="../connections/sqlite-duckdb.html">SQLite and DuckDB</a></li><li><a href="../connections/ssh-tunnels.html">SSH tunnels</a></li><li><a href="../connections/rds-iam.html">AWS RDS and Aurora sign-in</a></li><li><a href="../connections/amazon-s3.html">Amazon S3</a></li><li><a href="../connections/azure-blob.html">Azure Blob and ADLS</a></li><li><a href="../connections/google-cloud-storage.html">Google Cloud Storage</a></li><li><a href="../connections/clickhouse.html">ClickHouse</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#real-time">Real-time</a>
+            <ul class="side-links"><li><a href="../real-time/live-dashboards.html">Live dashboards</a></li><li><a href="../real-time/live-sources.html">Live sources</a></li></ul>
+          </li>
+          <li class="side-group"><a class="side-label" href="../#reference">Reference</a>
+            <ul class="side-links"><li><a href="../reference/workspace-files.html">Workspace files</a></li><li><a href="../reference/security.html">Security</a></li><li><a href="../reference/coming.html">Coming</a></li></ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="doc-article">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../">Oxi</a></li><li aria-hidden="true">/</li>
+          <li><a href="../">docs</a></li><li aria-hidden="true">/</li>
+          <li><a href="../#trusted-answers">Trusted answers</a></li><li aria-hidden="true">/</li>
+          <li><span aria-current="page">Accuracy check</span></li>
+        </ol>
+      </nav>
+
+      <header class="doc-head">
+        <p class="eyebrow">// trusted-answers</p>
+        
+        <h1>Accuracy check</h1>
+        <p class="lead">The accuracy check re-asks each saved question and compares the answer with the expected result.</p>
+      </header>
+
+      <div class="doc-body">
+<section id="run" aria-labelledby="run-h"><h2 id="run-h">Run the check</h2>
+<p>Run it from <strong>Settings</strong>, under the AI section. The result lists each question with its outcome, so you can see which answers changed.</p>
+</section>
+<section id="rate" aria-labelledby="rate-h"><h2 id="rate-h">The wrong-answer rate</h2>
+<p>The headline is the <strong>wrong-answer rate</strong> for the workspace.</p><p class="note-line">The accuracy score is only as complete as your question set. Add the questions your team asks, with the Ask bar's verified-question step.</p>
+</section>
+      </div>
+
+      <nav class="pager" aria-label="Previous and next pages">
+        <a class="pager-link pager-prev" href="../trusted-answers/metric-trust.html"><span class="pager-dir">← Previous</span><span class="pager-title">Metric trust</span></a>
+        <a class="pager-link pager-next" href="../trusted-answers/ai-settings.html"><span class="pager-dir">Next →</span><span class="pager-title">AI settings</span></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="../../" aria-label="Oxi home"><img class="logo" src="../../assets/logo.svg" alt="" width="52" height="36"></a>
+        <p class="foot-note">v0.1 &middot; No telemetry &middot; Network only for approved connections</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="../../#product">Product</a></li>
+          <li><a href="../../#demos">Demos</a></li>
+          <li><a href="../../#architecture">Architecture</a></li>
+          <li><a href="../../#benchmarks">Benchmarks</a></li>
+          <li><a href="../">Docs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../main.js" defer></script>
+  <script src="../docs.js" defer></script>
+</body>
+</html>

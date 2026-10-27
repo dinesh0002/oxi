@@ -1,0 +1,164 @@
+[
+  {
+    "title": "Installation",
+    "section": "Getting started",
+    "path": "docs/getting-started/installation.html",
+    "text": "The desktop app, and browser mode for interface work. Oxi runs on your own computer, with no server and no account. Installers are not published yet, so this page covers how developers run it today. The desktop app Oxi is a desktop app: a Rust core with embedded DuckDB, in a Tauri v2 shell with a React interface. Developers can run it from the source repository: Install Rust (stable, with rustup), Node.js 20 or newer"
+  },
+  {
+    "title": "Quickstart",
+    "section": "Getting started",
+    "path": "docs/getting-started/quickstart.html",
+    "text": "Open a workspace, explore a dataset and build a first dashboard. Open a folder as a workspace, explore its datasets, and build a dashboard on top of them. Open a workspace A workspace is a folder. Oxi keeps its settings in oxicore.yml , models in models/ and dashboards in dashboards/ . A minimal file looks like this: Create the folder, add oxicore.yml , and put your data in a data folder. On the Welcome screen, choos"
+  },
+  {
+    "title": "Models and metrics",
+    "section": "Semantic models",
+    "path": "docs/semantic-models/models-metrics.html",
+    "text": "dbt-compatible YAML models, entities, joins and the metric types. A semantic model describes a dataset in dbt-compatible YAML: its columns, its entities and joins, and its metrics. Metrics are defined once, and every dashboard card and Ask answer reads them from there. Create a model from a dataset In the Catalog, select a dataset and choose Create model . Oxi drafts the YAML from the file's columns. Edit it in the e"
+  },
+  {
+    "title": "Lineage",
+    "section": "Semantic models",
+    "path": "docs/semantic-models/lineage.html",
+    "text": "The lineage graph, the joins between models and the multi-hop paths. The lineage view shows where each model, join and metric comes from, and which dashboards use it. The graph The lineage view draws a graph from left to right: data sources, models, metrics (grouped per model; click to expand) and the dashboards that use them. Click a model to open it. The lineage graph for the sample workspace. Joins Below the graph"
+  },
+  {
+    "title": "Ask bar",
+    "section": "Trusted answers",
+    "path": "docs/trusted-answers/ask-bar.html",
+    "text": "Ask in plain English. Answers use defined metrics only. The Ask bar answers a question with a metric you have defined, and shows how the answer was made. Ask a question Open Explore and type a question in the Ask bar. Choose Ask . Read the answer: the metric chips it used, the metric's status, the result, and the SQL (expand SQL to read it). If the answer is right, choose Correct, save as verified question . Oxi adds"
+  },
+  {
+    "title": "Metric trust",
+    "section": "Trusted answers",
+    "path": "docs/trusted-answers/metric-trust.html",
+    "text": "Tests, certification and the four metric statuses. Metric trust shows how far each metric's number can be trusted, and what it takes to certify it. Statuses A metric has one of four statuses: Untested : no test has run against it. Tested : its tests passed in the last run. Certified : a person certified it after its tests passed. Any edit to its definition removes the certification. Failing : a test failed in the las"
+  },
+  {
+    "title": "Accuracy check",
+    "section": "Trusted answers",
+    "path": "docs/trusted-answers/accuracy.html",
+    "text": "Re-ask saved questions and track the wrong-answer rate. The accuracy check re-asks each saved question and compares the answer with the expected result. Run the check Run it from Settings , under the AI section. The result lists each question with its outcome, so you can see which answers changed. The wrong-answer rate The headline is the wrong-answer rate for the workspace. The accuracy score is only as complete as "
+  },
+  {
+    "title": "AI settings",
+    "section": "Trusted answers",
+    "path": "docs/trusted-answers/ai-settings.html",
+    "text": "Choose Claude or Ollama, and see exactly what is sent. Ask can use Claude with your API key, or a model running on your machine through Ollama. Choose a provider Open Settings , choose the AI provider, and turn AI on. Claude : requests go to Anthropic with your API key. Ollama : the model runs on your machine. What is sent Oxi sends the model metadata only: names, labels, descriptions and the dimension values in play"
+  },
+  {
+    "title": "Power BI",
+    "section": "Migration",
+    "path": "docs/migration/power-bi.html",
+    "text": "Import a Power BI project (.pbip) into Oxi models and dashboards. Oxi imports a Power BI project into models and dashboards. The preview comes first, and nothing is written until you import. What is imported A Power BI project is a .pbip folder, with TMDL and PBIR files. The preview shows the coverage: how many measures and visuals Oxi translates, and each one it cannot. Import a project Open Models and choose Import"
+  },
+  {
+    "title": "Tableau",
+    "section": "Migration",
+    "path": "docs/migration/tableau.html",
+    "text": "Import a Tableau workbook (.twb or .twbx) and match its data sources. Oxi imports a Tableau workbook into Oxi models and dashboards, after a preview that shows the coverage. Import a workbook In Tableau Desktop, choose File, then Save As, and pick .twb or .twbx . In Oxi, choose Import , then Tableau workbook , and enter the file path. Choose Preview . Each Tableau data source is matched to a dataset in the Catalog. C"
+  },
+  {
+    "title": "Reconciliation",
+    "section": "Migration",
+    "path": "docs/migration/reconciliation.html",
+    "text": "Compare shipped numbers with the original tool, and load reference values. Reconciliation compares Oxi's results with the numbers the original tool produces. Load reference values (Power BI) In the migration, choose Export DAX checks to get the DAX query for each check. Run each query in Power BI Desktop (the DAX query view) or DAX Studio. Export each result as a CSV file named after its check. Put the CSV files in o"
+  },
+  {
+    "title": "Review queue",
+    "section": "Migration",
+    "path": "docs/migration/review-queue.html",
+    "text": "Measures Oxi cannot translate, with the reason, and the AI draft check. Measures that Oxi cannot translate wait in the review queue, with the reason, such as an unrecognised function. The queue Each item is a measure that needs review, with the function or reason that stopped the translation. Anything Oxi does not recognise is listed here, not guessed. The review queue for the sample Power BI project. AI drafts With "
+  },
+  {
+    "title": "Overview",
+    "section": "Connections",
+    "path": "docs/connections/overview.html",
+    "text": "Approval, the keychain, the encrypted extract cache and auto, live or extract retrieval. A connection makes a database or a cloud bucket appear in the Catalog, next to your files. Oxi attaches databases read-only. Approval Each connection must be approved on this computer before it connects. The approval is tied to the connection's details: if they change, Oxi asks again. Secrets Passwords, keys and tokens are kept i"
+  },
+  {
+    "title": "PostgreSQL",
+    "section": "Connections",
+    "path": "docs/connections/postgres.html",
+    "text": "Connect a PostgreSQL database with a read-only role, and its form fields. Connect a PostgreSQL database. Use a read-only role. Form fields Field Notes Connection id Required. 1 to 40 lowercase letters, digits or underscores, starting with a letter. Label Optional name shown on the card. Host Required. A name or an IP address. Port Default 5432. Database Required. User Required. Use a read-only role. Password Stored i"
+  },
+  {
+    "title": "MySQL",
+    "section": "Connections",
+    "path": "docs/connections/mysql.html",
+    "text": "Connect a MySQL database, with its TLS rules over an SSH tunnel. Connect a MySQL database. Use a read-only user. Form fields Field Notes Connection id, label, host, database, user, password, schema, retrieval As for PostgreSQL . Port Default 3306. TLS mode As for PostgreSQL. Over an SSH tunnel, MySQL cannot check the host name, so use require instead of verify-full . SSH tunnel Optional, as on the SSH tunnels page."
+  },
+  {
+    "title": "SQLite and DuckDB",
+    "section": "Connections",
+    "path": "docs/connections/sqlite-duckdb.html",
+    "text": "Attach a SQLite file or a DuckDB database file from the workspace. Attach a SQLite or DuckDB file. Both are local files, so no network is used. SQLite Field Notes Connection id, label As for PostgreSQL . File path Required. Relative to the workspace, or absolute inside the workspace or a data folder. Test reports the number of tables. Each table appears in the Catalog under the connection, with its provenance (system"
+  },
+  {
+    "title": "SSH tunnels",
+    "section": "Connections",
+    "path": "docs/connections/ssh-tunnels.html",
+    "text": "Reach a database behind a bastion host, with host-key checks. A database behind a bastion host can be reached through an SSH tunnel. Form fields Fill in the SSH host, SSH port (default 22), SSH user, and optionally a key file. Leave the key file empty to use ssh-agent. A key passphrase, if any, is stored in the keychain. Host keys The first connection through a new host shows its host-key fingerprint. Nothing connect"
+  },
+  {
+    "title": "AWS RDS and Aurora sign-in",
+    "section": "Connections",
+    "path": "docs/connections/rds-iam.html",
+    "text": "Sign in to a PostgreSQL or MySQL instance on RDS or Aurora with AWS IAM. For a PostgreSQL or MySQL instance on RDS or Aurora, sign in with AWS IAM instead of a password. Sign-in Choose AWS IAM (RDS / Aurora) as the sign-in. Enter the AWS region and, optionally, the AWS profile. No password is stored for this sign-in."
+  },
+  {
+    "title": "Amazon S3",
+    "section": "Connections",
+    "path": "docs/connections/amazon-s3.html",
+    "text": "Amazon S3 and S3-compatible storage: bucket, prefix, region and sign-in. Connect an Amazon S3 bucket, or an S3-compatible store. Form fields Field Notes Connection id, label As for PostgreSQL . Bucket Required. 3 to 63 lowercase letters, digits, dots, hyphens or underscores. Prefix Optional. Only files below this folder are listed in the Catalog. Region For example eu-west-1 . URL style Path style or virtual host sty"
+  },
+  {
+    "title": "Azure Blob and ADLS",
+    "section": "Connections",
+    "path": "docs/connections/azure-blob.html",
+    "text": "Azure Blob Storage and ADLS: storage account, container and sign-in. Connect an Azure Blob Storage container or an ADLS file system. Form fields Field Notes Connection id, label, prefix As for Amazon S3 . Storage account Required. 3 to 24 lowercase letters and digits. Container Required. A container name, lowercase letters, digits and single hyphens. Sign-in An az CLI login (the default), a connection string kept in "
+  },
+  {
+    "title": "Google Cloud Storage",
+    "section": "Connections",
+    "path": "docs/connections/google-cloud-storage.html",
+    "text": "Google Cloud Storage with an HMAC key. Verification is pending. Google Cloud Storage is built, but it is not yet verified against real Google Cloud Storage. Status Verification pending. The connection is built, and it has not yet been checked against real Google Cloud Storage. Fields Connection id and label. Bucket and prefix. Sign-in with an HMAC key: Key ID and Secret, kept in the keychain."
+  },
+  {
+    "title": "ClickHouse",
+    "section": "Connections",
+    "path": "docs/connections/clickhouse.html",
+    "text": "Connect ClickHouse. Queries run inside the server (pushdown). Connect a ClickHouse server. Queries run inside ClickHouse, which is the pushdown: the work happens in the server, and Oxi reads the result. Form fields Field Notes Connection id, label, host, database, user, password As for PostgreSQL . Port Default 8123 over plain HTTP, or 8443 when TLS is on. TLS mode, CA file As for PostgreSQL . Pushdown ClickHouse has"
+  },
+  {
+    "title": "Live dashboards",
+    "section": "Real-time",
+    "path": "docs/real-time/live-dashboards.html",
+    "text": "Refresh every 1 to 10 seconds, with the Live badge and the last N minutes. A dashboard can refresh itself every 1 to 10 seconds. Turn on refresh Open Dashboards and choose the dashboard. Set the auto-refresh control in the dashboard toolbar, next to Reload, to the interval you want. The Live badge appears and shows when the cards last updated, for example Live · updated 0s ago . Set it back to off to stop refreshing."
+  },
+  {
+    "title": "Live sources",
+    "section": "Real-time",
+    "path": "docs/real-time/live-sources.html",
+    "text": "The demo sensor is built. MQTT and HTTP polling are new. WebSocket, SSE and Kafka are coming. A live source streams messages into a table in a rolling window. A dashboard built on it refreshes as the messages arrive. Demo sensor The demo sensor is built. It sends simulated readings, so you can try the whole flow with no external system. Open Connections and choose Add live source . Step 1, Source: the source type is "
+  },
+  {
+    "title": "Workspace files",
+    "section": "Reference",
+    "path": "docs/reference/workspace-files.html",
+    "text": "The workspace settings file, the models folder and the dashboards folder. A workspace is a folder. Oxi keeps its settings, models and dashboards as plain files. Layout oxicore.yml : the workspace settings, including the data folders. models/ : semantic models, as dbt-compatible YAML. dashboards/ : dashboards, as YAML. Managed YAML Oxi writes only its own YAML files, and each one starts with the line # managed-by: oxi"
+  },
+  {
+    "title": "Security",
+    "section": "Reference",
+    "path": "docs/reference/security.html",
+    "text": "Engine lockdown, connection approvals, secrets and what leaves the machine. Oxi keeps your data on your computer. This page lists what it does, and what it does not do. Local-first Files and the local extract cache stay on your computer. The app sends no usage data, and it has no accounts. Network use happens only for connections you have approved. Engine lockdown The embedded engine is locked after its setup: extern"
+  },
+  {
+    "title": "Coming",
+    "section": "Reference",
+    "path": "docs/reference/coming.html",
+    "text": "The roadmap: items that are not built yet. These are not built yet. Items marked coming in the docs are listed here. Live sources WebSocket and Server-Sent Events. Kafka. Warehouses Snowflake, BigQuery and Databricks. StarRocks, Apache Doris, Apache Druid and Apache Pinot. Privacy PII detection. Cloud storage Google Cloud Storage: verification against real storage is pending."
+  }
+]

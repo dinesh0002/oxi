@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Oxi local testing (owner only)</title>
+  <meta name="description" content="Owner-only notes for testing Oxi connections against local Docker services. Not deployed.">
+  <meta name="theme-color" content="#F6F8FC">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="local-banner" role="note">
+    <strong>Local testing only. Not deployed.</strong> Default test credentials for local Docker containers.
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Oxi home"><img class="logo" src="../assets/logo.svg" alt="" width="52" height="36"></a>
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="../#why">Why</a></li>
+          <li><a href="../#product">Product</a></li>
+          <li><a href="../#benchmarks">Benchmarks</a></li>
+          <li><a href="./">Docs</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="doc">
+    <div class="wrap">
+      <header class="doc-head">
+        <p class="eyebrow">// owner only &middot; local testing</p>
+        <h1>Testing Oxi against local services</h1>
+        <p class="lead">For the owner's own tests. Each service runs in a local Docker container from <code>tests/docker/compose.yml</code> in the app repository, and every port binds to 127.0.0.1. Use the values below in Oxi's connection form (Connections, then Add connection).</p>
+      </header>
+
+      <div class="doc-body">
+
+        <section aria-labelledby="lt-setup">
+          <h2 id="lt-setup">Before you start</h2>
+          <ul class="facts">
+            <li>Run every command from the root of the app repository (<code>oxicore</code>).</li>
+            <li>Start only the services a test needs. Stop them as soon as the tests finish: <code>docker compose -f tests/docker/compose.yml stop</code>.</li>
+            <li>The test passwords below are defaults for throwaway containers. Overrides: <code>OXI_TEST_PG_PASSWORD</code>, <code>OXI_TEST_MSSQL_PASSWORD</code>, <code>OXI_TEST_CLICKHOUSE_PASSWORD</code>. The Postgres reader password is fixed in <code>postgres-init.sql</code>.</li>
+            <li>Remove containers and their data with <code>docker compose -f tests/docker/compose.yml down -v</code>. Seeds run again on the next start.</li>
+            <li>Never point these connections at real data.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="lt-pg">
+          <h2 id="lt-pg">PostgreSQL</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d --wait postgres</span></code></pre></div>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>PostgreSQL</td></tr>
+              <tr><th scope="row">Connection id</th><td>shop_pg (any valid id)</td></tr>
+              <tr><th scope="row">Host</th><td><code>127.0.0.1</code></td></tr>
+              <tr><th scope="row">Port</th><td><code>55432</code> (the container's 5432, mapped)</td></tr>
+              <tr><th scope="row">Database</th><td><code>shop</code></td></tr>
+              <tr><th scope="row">User</th><td><code>oxi_reader</code> (read-only role)</td></tr>
+              <tr><th scope="row">Password</th><td><code>oxi_reader_pg</code></td></tr>
+              <tr><th scope="row">TLS mode</th><td>Automatic (<code>prefer</code>, since the host is localhost). The container has no TLS.</td></tr>
+              <tr><th scope="row">Sign-in</th><td>Password</td></tr>
+              <tr><th scope="row">Tables</th><td><code>public.customers</code> (3 rows), <code>public.orders</code> (5 rows, amounts total 558.50)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop postgres</span></code></pre></div>
+          <p class="note-line">Rust gated test: <code>OXI_TEST_PG=1 cargo test -p oxicore-core postgres_connection_through_docker</code>.</p>
+        </section>
+
+        <section aria-labelledby="lt-ssh">
+          <h2 id="lt-ssh">SSH bastion (tunnel to Postgres)</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d --wait postgres ssh-bastion</span></code></pre></div>
+          <p>The bastion reaches the database as <code>postgres:5432</code> on the compose network. Use the Postgres form with these changes:</p>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Connection id</th><td>ssh_pg</td></tr>
+              <tr><th scope="row">Host</th><td><code>postgres</code> (the database's name on the compose network, not 127.0.0.1)</td></tr>
+              <tr><th scope="row">Port</th><td><code>5432</code></td></tr>
+              <tr><th scope="row">Database, user, password</th><td><code>shop</code>, <code>oxi_reader</code>, <code>oxi_reader_pg</code></td></tr>
+              <tr><th scope="row">SSH host</th><td><code>127.0.0.1</code></td></tr>
+              <tr><th scope="row">SSH port</th><td><code>52222</code></td></tr>
+              <tr><th scope="row">SSH user</th><td><code>oxi</code></td></tr>
+              <tr><th scope="row">Key file</th><td>The absolute path of <code>tests/docker/ssh/id_ed25519</code> on this machine (a test key, no passphrase)</td></tr>
+              <tr><th scope="row">Key passphrase</th><td>Leave empty</td></tr>
+            </tbody>
+          </table></div>
+          <p>The first test shows the bastion's host-key fingerprint on the card. Check it, then use the trust button on the card. Oxi refuses any other key for this host. A new connection to a host you have not trusted connects to nothing.</p>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop ssh-bastion postgres</span></code></pre></div>
+          <p class="note-line">Rust gated test: <code>OXI_TEST_SSH=1 cargo test -p oxicore-core ssh_tunnel_through_docker</code> (needs Postgres and the bastion running).</p>
+        </section>
+
+        <section aria-labelledby="lt-ch">
+          <h2 id="lt-ch">ClickHouse</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d --wait clickhouse clickhouse-seed</span></code></pre></div>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>ClickHouse</td></tr>
+              <tr><th scope="row">Connection id</th><td>oxi_ch</td></tr>
+              <tr><th scope="row">Host</th><td><code>127.0.0.1</code></td></tr>
+              <tr><th scope="row">Port</th><td><code>58123</code> (the container's 8123, mapped; the form's default 8123 is not this port)</td></tr>
+              <tr><th scope="row">Database</th><td><code>oxi</code></td></tr>
+              <tr><th scope="row">User</th><td><code>oxi_admin</code></td></tr>
+              <tr><th scope="row">Password</th><td><code>oxi_test_ch</code></td></tr>
+              <tr><th scope="row">TLS mode</th><td>Automatic. The container serves plain HTTP on localhost only.</td></tr>
+              <tr><th scope="row">Tables</th><td><code>oxi.sales</code>, <code>oxi.customers</code>, <code>oxi.sales_model</code></td></tr>
+            </tbody>
+          </table></div>
+          <p>There is no SSH tunnel or AWS sign-in for ClickHouse.</p>
+<div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop clickhouse</span></code></pre></div>
+          <p class="note-line">Rust gated test: <code>OXI_TEST_CLICKHOUSE=1 cargo test -p oxicore-core --test clickhouse</code>.</p>
+        </section>
+
+        <section aria-labelledby="lt-s3">
+          <h2 id="lt-s3">Amazon S3 stand-in (s3proxy)</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d --wait s3 s3-seed</span></code></pre></div>
+          <p>s3proxy stands in for MinIO. It is an S3-compatible endpoint with path-style URLs, so choose the S3-compatible option in the form.</p>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>Amazon S3 / S3-compatible</td></tr>
+              <tr><th scope="row">Connection id</th><td>landing_s3</td></tr>
+              <tr><th scope="row">Bucket</th><td><code>acme-analytics</code></td></tr>
+              <tr><th scope="row">Prefix</th><td><code>curated/</code> (lists the sales files and <code>reference/customers.csv</code>)</td></tr>
+              <tr><th scope="row">Region</th><td><code>eu-west-1</code></td></tr>
+              <tr><th scope="row">URL style</th><td>Path style</td></tr>
+              <tr><th scope="row">Endpoint</th><td><code>http://127.0.0.1:59000</code></td></tr>
+              <tr><th scope="row">Sign-in</th><td>Access key (keychain)</td></tr>
+              <tr><th scope="row">Key ID / Secret</th><td><code>oxitest</code> / <code>oxitestsecret</code></td></tr>
+            </tbody>
+          </table></div>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop s3</span></code></pre></div>
+          <p class="note-line">Rust gated test: <code>OXI_TEST_CLOUD=1 cargo test -p oxicore-core --test service</code> (the S3 cases need the <code>s3</code> and <code>s3-seed</code> services).</p>
+        </section>
+
+        <section aria-labelledby="lt-az">
+          <h2 id="lt-az">Azurite (Azure Blob)</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d --wait azurite azurite-seed</span></code></pre></div>
+          <p>The form has no endpoint field for Azure, so point Oxi at Azurite with a connection string. The connection string is the well-known Azurite development account. It is a public default, not a secret.</p>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>Azure Blob / ADLS</td></tr>
+              <tr><th scope="row">Connection id</th><td>landing_azure</td></tr>
+              <tr><th scope="row">Storage account</th><td><code>devstoreaccount1</code></td></tr>
+              <tr><th scope="row">Container</th><td><code>analytics</code></td></tr>
+              <tr><th scope="row">Prefix</th><td><code>curated/sales</code></td></tr>
+              <tr><th scope="row">Sign-in</th><td>Connection string (keychain)</td></tr>
+              <tr><th scope="row">Connection string</th><td><code>DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;</code> (the <code>CS</code> value in <code>compose.yml</code>)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop azurite</span></code></pre></div>
+        </section>
+
+        <section aria-labelledby="lt-gcs">
+          <h2 id="lt-gcs">Fake GCS (blocked)</h2>
+          <p><strong>Status: blocked.</strong> The service seeds, but DuckDB's GCS secret uses the XML (S3-compatible) API, which <code>fake-gcs-server</code> does not serve. Oxi cannot read from it yet, so do not add a Google Cloud Storage connection for this service. The emulator test in <code>tests/service.rs</code> is marked blocked for the same reason.</p>
+          <p>If you start it for seeding: <code>docker compose -f tests/docker/compose.yml up -d --wait fake-gcs fake-gcs-seed</code>. Stop with <code>stop fake-gcs</code>.</p>
+        </section>
+
+        <section aria-labelledby="lt-mssql">
+          <h2 id="lt-mssql">SQL Server (MSSQL)</h2>
+          <p><strong>Oxi has no SQL Server connector yet.</strong> The container and seed exist for future tests and for checking the data by other means. There is no connection kind to fill in.</p>
+          <p><strong>Start:</strong> <code>docker compose -f tests/docker/compose.yml up -d --wait mssql mssql-seed</code> (runs on linux/amd64 under Rosetta on Apple silicon).</p>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Host, port</th><td><code>127.0.0.1</code>, <code>51433</code></td></tr>
+              <tr><th scope="row">Database</th><td><code>shop</code> (<code>dbo.customers</code>, <code>dbo.orders</code>)</td></tr>
+              <tr><th scope="row">Read-only login</th><td><code>oxi_reader</code> / <code>Oxi_reader_mssql_2026</code></td></tr>
+              <tr><th scope="row">SA login</th><td><code>sa</code> / <code>Oxi_test_mssql_2026</code> (seeding only)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop mssql</span></code></pre></div>
+        </section>
+
+        <section aria-labelledby="lt-mysql">
+          <h2 id="lt-mysql">MySQL</h2>
+          <p><strong>Pending.</strong> Oxi has a MySQL connector, but <code>tests/docker/compose.yml</code> has no MySQL service yet. Add one to the compose file before testing MySQL. Until then, use the Postgres values above only for Postgres.</p>
+        </section>
+
+        <section aria-labelledby="lt-files">
+          <h2 id="lt-files">SQLite and DuckDB fixture files</h2>
+          <p>No container is needed. Both files are in the app repository.</p>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">SQLite</th><td>File <code>fixtures/workspace-plain/shop.sqlite</code>, one table <code>orders</code>. Kind SQLite, file path <code>shop.sqlite</code> (relative to <code>fixtures/workspace-plain</code>, which is the workspace you open).</td></tr>
+              <tr><th scope="row">DuckDB</th><td>File <code>fixtures/workspace-dbt/warehouse.duckdb</code>. Open <code>fixtures/workspace-dbt</code> as the workspace, then kind DuckDB and file path <code>warehouse.duckdb</code>. If the file is missing, rebuild it: <code>cargo run -p oxicore-core --example gen_fixtures</code>.</td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <section aria-labelledby="lt-mqtt">
+          <h2 id="lt-mqtt">MQTT broker (Mosquitto)</h2>
+          <p><strong>Once:</strong> <code>sh tests/docker/mosquitto/seed.sh</code> (makes the test CA, the broker certificate and the password file; needs openssl and Docker).</p>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d mosquitto</span></code></pre></div>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>MQTT broker</td></tr>
+              <tr><th scope="row">Connection id</th><td>broker</td></tr>
+              <tr><th scope="row">Host</th><td><code>127.0.0.1</code></td></tr>
+              <tr><th scope="row">Port</th><td><code>51883</code> plain (allowed on localhost only), or <code>58883</code> with TLS</td></tr>
+              <tr><th scope="row">User</th><td><code>oxi_reader</code></td></tr>
+              <tr><th scope="row">Password</th><td><code>oxi_test_mqtt</code></td></tr>
+              <tr><th scope="row">TLS mode</th><td>Plain port: Disable. TLS port: Verify full, with CA file <code>tests/docker/mosquitto/generated/ca.crt</code> (full path from the app repo)</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Live source:</strong> kind MQTT, connection <code>broker</code>, topics <code>oxi/test/+/+</code>, QoS 1, topic fields <code>site, device</code>.</p>
+          <p><strong>Send test messages:</strong> <code>docker compose -f tests/docker/compose.yml exec mosquitto mosquitto_pub -h localhost -p 1883 -u oxi_reader -P oxi_test_mqtt -t oxi/test/site1/dev1 -m '{"ts":"2026-10-27T12:00:00Z","temperature":21.5}'</code></p>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop mosquitto</span></code></pre></div>
+          <p class="note-line">The MQTT and HTTP forms in the app are being finished. Rust gated tests: <code>OXI_TEST_LIVE=1 cargo test -p oxicore-core --test live_sources</code> (needs mosquitto and live-api running).</p>
+        </section>
+
+        <section aria-labelledby="lt-api">
+          <h2 id="lt-api">Test JSON API (HTTP polling)</h2>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">start</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml up -d live-api</span></code></pre></div>
+          <div class="table-wrap"><table class="fields">
+            <tbody>
+              <tr><th scope="row">Kind</th><td>HTTP API (polling)</td></tr>
+              <tr><th scope="row">Connection id</th><td>live_api</td></tr>
+              <tr><th scope="row">URL</th><td><code>http://127.0.0.1:58080/readings</code> (plain HTTP is allowed on localhost only)</td></tr>
+              <tr><th scope="row">Header</th><td><code>X-Api-Key</code>, marked secret, value <code>test-key</code></td></tr>
+              <tr><th scope="row">Sign-in</th><td>Bearer token <code>test-token</code></td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Live source:</strong> kind HTTP polling, connection <code>live_api</code>, every 1–10 seconds, records path <code>$.data</code>. The API returns three readings every two seconds and answers 304 when nothing changed.</p>
+          <div class="term term-card"><div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-label">stop</span></div><pre class="term-body"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>docker compose -f tests/docker/compose.yml stop live-api</span></code></pre></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="../" aria-label="Oxi home"><img class="logo" src="../assets/logo.svg" alt="" width="52" height="36"></a>
+        <p class="foot-note">Owner only. Not deployed.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js" defer></script>
+  <script src="docs.js" defer></script>
+</body>
+</html>

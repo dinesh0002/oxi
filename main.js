@@ -235,7 +235,8 @@
   runTerminal();
   setupReveals($$('.reveal'));
 
-  loadCaptions().then(function (captions) {
+  // Pages without the demo list (the docs) skip the demo videos entirely.
+  if ($('#demo-list')) loadCaptions().then(function (captions) {
     var list = captions || DEFAULT_DEMOS;
     if (captions) {
       captions.forEach(function (c) { lookup[c.id] = Object.assign({}, lookup[c.id] || {}, c); });
