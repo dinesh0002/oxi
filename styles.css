@@ -138,11 +138,7 @@ p { color: var(--muted); }
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px;
   color: var(--text); font-weight: 700; font-size: 18px; text-decoration: none;
 }
-.mark { position: relative; width: 16px; height: 16px; background: var(--primary); }
-.mark::after {
-  content: ""; position: absolute; right: -5px; bottom: -5px;
-  width: 7px; height: 7px; background: var(--accent);
-}
+.logo { display: block; width: 52px; height: 36px; image-rendering: pixelated; }
 .nav { margin-left: auto; }
 .nav-list { display: flex; align-items: center; gap: 2px; list-style: none; }
 .nav-list a {

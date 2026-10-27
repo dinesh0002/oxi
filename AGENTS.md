@@ -46,6 +46,9 @@ vercel.json           headers, cache rules, CSP, static output
      `--accent-line` #FDE047, `--on-accent` #0B1530, `--green` #15803D, `--focus` #1D4ED8.
    - Yellow (`--accent`) is for fills, markers, bullets and bars only, with near-black text on
      it. Never use yellow as text on white.
+   - Logo (`assets/logo.svg`, `favicon.svg`): navy (#0B1530) pixel letters "oxi" with a yellow
+     i-dot and a yellow underline bar, transparent background. Yellow stays an accent, never the
+     letters, so the logo reads clearly from a distance.
    - Links and text use `--primary` or `--text`. Focus rings stay blue (`--focus`).
    - Square corners, 1px borders, the grid background. No shadows except the terminal.
 4. **Motion** only through CSS keyframes and the single IntersectionObserver in `main.js`.
